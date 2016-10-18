@@ -1,5 +1,5 @@
-firstname,lastname,address,email,telephone,comment
-Ali,Karimi," 539 17 Ave SW, Calgary, AB T2S 0A9",ali.k12123@gmail.com,8904442345,Newly added
-Ahmad,Mohammadi," 410 10 St NW, Calgary, AB T2N 1V9",ahmad9238123@gmail.com,2235679900,
-Ehsan,Khabbaz,"1820 Uxbridge Dr NW, Calgary, AB T2N 3Z1",e.k21323123@gmail.com,9893341245,
-Mohammad,,240 16 Ave NE Calgary AB T2E 1J8,moh2323424@gmail.com,3789182345,
+firstname,lastname,address,email,telephone,bottle,coin,comment,title
+Ali,Karimi," 539 17 Ave SW, Calgary, AB T2S 0A9",ali.k12123@gmail.com,8904442345,123,123,Newly added, Ali Karimi
+Ahmad,Mohammadi," 410 10 St NW, Calgary, AB T2N 1V9",ahmad9238123@gmail.com,2235679900,123,123,asd, Ahmad Mohammadi
+Ehsan,Khabbaz,"1820 Uxbridge Dr NW, Calgary, AB T2N 3Z1",e.k21323123@gmail.com,9893341245,123,123,sd, Ehsan Khabbaz
+Mohammad,,240 16 Ave NE Calgary AB T2E 1J8,moh2323424@gmail.com,3789182345,123,123,asd, Mohammad

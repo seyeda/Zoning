@@ -4,9 +4,7 @@ This simple app gets 1) a csv file of names and addresses, and 2) a number n bet
 ## How to use it
 ### When input file needs zoning to be done by the app
 The input file must be a csv file. The first row is considered as the header and will be ignored. 
-In particular, the first row must be the same as the following 
-
-* firstname,lastname,address,email,telephone,comment
+Two columns must appear in the header: "title" and "address". Title column is used to create caption for markers that will be added to the map. 
 
 Next,
 
@@ -14,16 +12,13 @@ Next,
 2. Enter the total number of zones you want the addresses to be distributed to. The maximum number of zones is 13,
 3. Press run and wait for the addresses to appear in the map,
 4. If you want to move an address to another zone, click on its marker, enter the new zone, and press "move to zone",
-5. Once you are ok with the displayed zoning, press "create download link" and then press "download",
+5. Once you are ok with the displayed zoning, press "create download link" and then press "download". In the generated file for download, zone number appears under column "zone".
 
 Click [here](https://github.com/seyeda/zoning/blob/master/sampleFileNeedZoning.csv) to see a sample file.
 
 ### When input file does not needs zoning to be done by the app
 The input file must be a csv file. The first row is considered as the header and will be ignored. 
-In particular, the first row must be the same as the following 
-
-* firstname,lastname,address,email,telephone,comment,zone
-
+Three columns must appear in the header: "title", "address", and "zone". Title column is used to create caption for markers that will be added to the map. 
 The last attribute should be the zone number attribute.
 
 1. Select the file,
