@@ -284,7 +284,7 @@ $(document).ready(function () {
     if (isAPIAvailable()) {
         $('#files').bind('change', handleFileSelect);
     }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initMap);
 });
 
 function handleFileSelect(evt) {
@@ -317,7 +317,7 @@ function isAPIAvailable() {
     }
 }
 
-function initialize() {
+function initMap() {
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(51, -114);
     var mapOptions = {
