@@ -2,91 +2,247 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-  <meta charset="utf-8">
-  <title>Geocoding service</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css"
+          integrity="sha384-2hfp1SzUoho7/TsGGGDaFdsuuDL0LX2hnUp6VkX3CUQ2K4K+xjboZdsXyp4oUHZj"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="js/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/alertify.core.css"/>
+    <link rel="stylesheet" href="css/alertify.default.css"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Geocoding service</title>
 </head>
 
 <body>
-  <!--<div id=inputs class=clearfix>
-  </div>-->
-  <div class="container">
+<!--<div id=inputs class=clearfix>
+</div>-->
+<div class="container">
     <div class="row">
-      <div class="offset-md-1 col-md-10">
-        <br>
-        <h1>Zoning</h1>
-        <i>If you know how to work with this tool, scroll down to the <a href="#panel">map</a>.</i>
-        
-        <p><br>This simple app gets 1) a csv file of names and addresses, and 2) a number between 1 to 13, and distribute addresses
-          to the determinied number of zones based on proximity. Once the zoning is complete, you can still manually change zones assigned to addresses
-          on the map by clicking on markers and moving it to the new zone. Finally you can generate a new csv file, which is
-          the same as the input csv file, with zone numbers added in the last column.</p>
-          <p>
-            If you do not know what is a CSV file, consider a table that consists of rows and column. Every line in a CSV file is basically a row in a table. Moreover, in every line (row), columns are separated by comma (,). You can export Microsoft Excel sheets or Google spread sheet to CSV files. There are also lots of online tools that allow you to create CSV files.  
-            </p> 
+        <div class="offset-md-1 col-md-10">
+            <br>
+            <h1>Zoning</h1>
+            <i>If you know how to work with this tool, scroll down to the <a href="#panel">map</a>.</i>
+            <p><br>This simple app gets 1) a csv file of names and addresses, and 2) a number between 1 to 13, and
+                distribute addresses
+                to the determinied number of zones based on proximity. Once the zoning is complete, you can still
+                manually change zones
+                assigned to addresses on the map by clicking on markers and moving it to the new zone. Finally you can
+                generate a new
+                csv file, which is the same as the input csv file, with zone numbers added in the last column.</p>
+            <p>
+                If you do not know what is a CSV file, consider a table that consists of rows and column. Every line in
+                a CSV file is basically
+                a row in a table. Moreover, in every line (row), columns are separated by comma (,). You can export
+                Microsoft Excel
+                sheets or Google spread sheet to CSV files. There are also lots of online tools that allow you to create
+                CSV files.
+            </p>
             <h2>Why do I need this?</h2>
             <p>
-              There are many usecases for using a zoning tool. For example, imagine you are organizing a bottle drive to go to different addresses and collect their bottles. You also have a few drivers who are going to help you with collecting the bottles. In order to assign addresses to the drivers, you need a zoning tool that could group your addresses into several groups in a way that addresses in every group are not too far from one another. Then you can assign each group to a driver. With the help of the zoning tool, you can rest assured that your drivers do not drive throughout city to collect bottles. 
-              </p>
-        <h2>How to use it</h2>
-        <p>The input file (containing addresses) must be a csv file. The first row is considered as the header and will be ignored. Two columns must
-          appear in the header: "title" and "address". Title column is used to create caption for markers that will be added
-          to the map. </p>
-        <p>Next, go to the below <a href="#panel">panel</a> and take the following steps:</p>
-        <ol>
-          <li>Select the file,</li>
-          <li>Enter the total number of zones you want the addresses to be distributed to. The maximum number of zones is 13,</li>
-          <li>Press run and wait for the addresses to appear in the map,</li>
-          <li>If you want to move an address to another zone, click on its marker, enter the new zone, and press "move to zone",</li>
-          <li>Once you are ok with the displayed zoning, press "create download link" and then press "download". In the generated
-            file for download, zone number appears under column "zone".</li>
-        </ol>
-        <p>Click <a href="https://raw.githubusercontent.com/seyeda/zoning/master/sampleFileNeedZoning.csv">here</a> to see a sample file.</p>
-        <h3>What if I have already done the zoning</h3>
-        <p>Imagine you have already done the zoning using this tool, or manually added the zone numbers to every line in your CSV file, and now want to just view the addresses and their zones on the map. You can still use this tool for that purpose. The input file still must be a CSV file. The first row is considered as the header and will be ignored. Three columns must
-          appear in the header: "title", "address", and "zone". Title column is used to create caption for markers that will
-          be added to the map. The last attribute should be the zone number attribute.</p>
-          <p>Next, go to the below <a href="#panel">panel</a> and take the following steps:</p>
-        <ol>
-          <li>Select the file,</li>
-          <li>Press run and wait for the addresses to appear in the map,</li>
-          <li>If you want to move an address to another zone, click on its marker, enter the new zone, and press "move to zone",</li>
-          <li>Once you are ok with the displayed zoning, press "create download link" and then press "download",</li>
-        </ol>
-        <p>Click <a href="https://raw.githubusercontent.com/seyeda/zoning/master/sampleFileNotNeedZoning.csv">here</a> to see a sample
-          file.
-        </p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="offset-md-1 col-md-10" id="panel">
-        <a target="_blank" href="https://github.com/seyeda/zoning#zoning">Help!</a> <br> Number of zones:
-        <input id="ClusterNum" type="textbox" onfocus="this.value=''" value="">
-        <input type="checkbox" id="zoning" name="zoning" value="Bike">Zoning needed<br> Select csv file:
-        <input type=file id=files name=files[] multiple />
-        <input type="button" value="Run" onclick="run()">
-        <input type="button" value="Make download link" onclick="makeDownloadLinkFromMarkers()">
-        <br>
-        <input type="text" align="center" id="prog" value="0" class="dial" style="display:none">
-        <div id="donlinkcont" style="display: none">
-          <a id="donlink">Download</a>
+                There are many usecases for using a zoning tool. For example, imagine you are organizing a bottle drive
+                to go to different
+                addresses and collect their bottles. You also have a few drivers who are going to help you with
+                collecting the bottles.
+                In order to assign addresses to the drivers, you need a zoning tool that could group your addresses into
+                several groups
+                in a way that addresses in every group are not too far from one another. Then you can assign each group
+                to a driver.
+                With the help of the zoning tool, you can rest assured that your drivers do not drive throughout city to
+                collect bottles.
+            </p>
+            <h2>How to use it</h2>
+            <p>The input file (containing addresses) must be a csv file. The first row is considered as the header and
+                will be ignored.
+                Two columns must appear in the header: "title" and "address". Title column is used to create caption for
+                markers that
+                will be added to the map. </p>
+            <p>Next, go to the below <a href="#panel">panel</a> and take the following steps:</p>
+            <ol>
+                <li>Select the file,</li>
+                <li>Enter the total number of zones you want the addresses to be distributed to. The maximum number of
+                    zones is 13,
+                </li>
+                <li>Press run and wait for the addresses to appear in the map,</li>
+                <li>If you want to move an address to another zone, click on its marker, enter the new zone, and press
+                    "move to zone",
+                </li>
+                <li>Once you are ok with the displayed zoning, press "create download link" and then press "download".
+                    In the generated
+                    file for download, zone number appears under column "zone".
+                </li>
+            </ol>
+            <p>Click <a href="https://raw.githubusercontent.com/seyeda/zoning/master/sampleFileNeedZoning.csv">here</a>
+                to see a sample
+                file.
+            </p>
+            <h3>What if I have already done the zoning</h3>
+            <p>Imagine you have already done the zoning using this tool, or manually added the zone numbers to every
+                line in your CSV
+                file, and now want to just view the addresses and their zones on the map. You can still use this tool
+                for that purpose.
+                The input file still must be a CSV file. The first row is considered as the header and will be ignored.
+                Three columns
+                must appear in the header: "title", "address", and "zone". Title column is used to create caption for
+                markers that will
+                be added to the map. The last attribute should be the zone number attribute.</p>
+            <p>Next, go to the below <a href="#panel">panel</a> and take the following steps:</p>
+            <ol>
+                <li>Select the file,</li>
+                <li>Press run and wait for the addresses to appear in the map,</li>
+                <li>If you want to move an address to another zone, click on its marker, enter the new zone, and press
+                    "move to zone",
+                </li>
+                <li>Once you are ok with the displayed zoning, press "create download link" and then press "download",
+                </li>
+            </ol>
+            <p>Click <a
+                    href="https://raw.githubusercontent.com/seyeda/zoning/master/sampleFileNotNeedZoning.csv">here</a>
+                to see a
+                sample file.
+            </p>
         </div>
-      </div>
     </div>
-  </div>
-  <div id="map-canvas">
-  </div>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="js/jquery.csv-0.71.min.js"></script>
-  <script src="js/clusterfck.js"></script>
-  <script src="js/clustering.js"></script>
-  <script src="js/jquery.knob.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4CwCJvjrPn9ek6cn422wUUAvUOK_isNA&callback=initMap"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU"
-    crossorigin="anonymous"></script>
+    <form class="form-inline">
+        <div class="row">
+            <div class="offset-md-1 col-md-10 panel">
+                <div class="row vertical-center">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <h6>If you already have a csv file, import it into the below table. Otherwise, manually fill the table.</h6>
+                    </div>
+                </div>
+                <div class="row vertical-center">
+
+                    <div class="col-xs-9 col-sm-5 col-md-4 ">
+                        <div class="form-group">
+                            <label for="file">Select csv file</label>
+                            <input type="file" class="form-control-file" id="file" aria-describedby="fileHelp">
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-7 col-md-8">
+                        <button type="submit" class="btn btn-primary" id="importcsv">Import file</button>
+                    </div>
+                    <!--<button type="submit" class="btn btn-primary" onclick="run()">Run</button>-->
+
+                </div>
+                <hr class="h_separator">
+                <div class="row ">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <button type="button" id="addrowbutton" class="btn-primary btn btn-default"> Add a new row
+                            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        </button>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <table class="table table-bordered table-striped" id="csvtable">
+                            <tr id="headerrow" class="table-info">
+                                <th></th>
+                                <th>title</th>
+                                <th id="address_column">address</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr id="firstrow">
+                                <td>
+                                    <button title="Delete this row" type="button"><i class="deleterow fa fa-trash"
+                                                                                     aria-hidden="true"
+                                                                                     onclick="deleterow(this)"></i>
+                                    </button>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <hr class="h_separator">
+                <div class="row vertical-center">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input id="zoning" name="zoning" type="checkbox" class="form-check-input">
+                                Zoning needed
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-3">
+                        <div class="form-group">
+                            <label for="ClusterNum">Number of zones</label>
+                            <select class="form-control" id="ClusterNum" disabled="true">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                                <option>13</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <button type="button" id="runzoningbutton" class="btn-primary btn btn-default"> Run <i
+                                class="fa fa-play" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-primary" id="makedownloadbutton">Make
+                            download
+                            link
+                        </button>
+                        <input type="text" align="center" id="prog" value="0" class="dial" style="display:none">
+                        <div id="donlinkcont" style="display: none">
+                            <a id="donlink">Click to download</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+    <div id="map-canvas">
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jquery.csv-0.71.min.js"></script>
+    <script src="js/clusterfck.js"></script>
+    <script src="js/clustering.js"></script>
+    <script src="js/jquery.knob.js"></script>
+    <script src="js/mindmup-editabletable.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4CwCJvjrPn9ek6cn422wUUAvUOK_isNA&callback=initMap"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js"
+            integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU"
+            crossorigin="anonymous"></script>
+    <script src="js/alertify.js"></script>
 </body>
 
 </html>

@@ -4,35 +4,44 @@
 
 var headers = undefined;
 
-function run() {
+//function run() {
+//    markers = [];
+//    var clusteringNeeded = document.getElementById("zoning").checked;
+//    var file = selectedFile;
+//    var reader = new FileReader();
+//    reader.readAsText(file);
+//    reader.onload = function (event) {
+//        var csv = event.target.result;
+//        var data = $.csv.toArrays(csv);
+//        startzoning(data, clusteringNeeded);
+//    };
+//    reader.onerror = function () {
+//        alert('Unable to read ' + file.fileName);
+//    };
+//}
+
+
+function startzoning(data, clusteringNeeded) {
+    for (var i = 0; i < markers.length; ++i) {
+        markers[i].setMap(null);
+    }
     markers = [];
-    var clusteringNeeded = document.getElementById("zoning").checked;
-    var file = selectedFile;
-    var reader = new FileReader();
-    reader.readAsText(file);
-    reader.onload = function (event) {
-        var csv = event.target.result;
-        var data = $.csv.toArrays(csv);
-        headers = {}
-        for (var i = 0; i < data[0].length; ++i) {
-            headers[data[0][i]] = i;
-        }
-        $(".dial").knob();
-        document.getElementById('prog').parentNode.style.display = "inline"
-        document.getElementById('prog').style.display = "inline"
-        if (!clusteringNeeded) {
-            addGeocodes([data, [], 1, headers, gecode_withoutzoning_callback]);
-        }
-        else {
-            addGeocodes([data, [], 1, headers, gecode_withzoning_callback]);
-        }
-    };
-    reader.onerror = function () {
-        alert('Unable to read ' + file.fileName);
-    };
+    headers = {}
+    for (var i = 0; i < data[0].length; ++i) {
+        headers[data[0][i]] = i;
+    }
+    $(".dial").knob();
+    document.getElementById('prog').parentNode.style.display = "inline"
+    document.getElementById('prog').style.display = "inline"
+    if (!clusteringNeeded) {
+        addGeocodes([data, [], 1, headers, gecode_withoutzoning_callback]);
+    }
+    else {
+        addGeocodes([data, [], 1, headers, gecode_withzoning_callback]);
+    }
 }
 
-function gecode_withzoning_callback(csvfile_with_geocode, headers){
+function gecode_withzoning_callback(csvfile_with_geocode, headers) {
     document.getElementById('prog').parentNode.style.display = "none"
     document.getElementById('prog').style.display = "none"
     var csvDownload = kmeansClusterDraw(csvfile_with_geocode, parseInt(document.getElementById("ClusterNum").value), headers);
@@ -40,7 +49,7 @@ function gecode_withzoning_callback(csvfile_with_geocode, headers){
     setDownloadLink(csvDownload, headers);
 }
 
-function gecode_withoutzoning_callback(csvfile_with_geocode, headers){
+function gecode_withoutzoning_callback(csvfile_with_geocode, headers) {
     document.getElementById('prog').parentNode.style.display = "none"
     document.getElementById('prog').style.display = "none"
     for (var i = 0; i < csvfile_with_geocode.length; ++i) {
@@ -50,7 +59,7 @@ function gecode_withoutzoning_callback(csvfile_with_geocode, headers){
     }
 }
 
-function addGeocodes(inputs){ // csvFile, out, end
+function addGeocodes(inputs) { // csvFile, out, end
     var csvFile = inputs[0];
     var out = inputs[1];
     var end = inputs[2];
@@ -118,10 +127,13 @@ function setDownloadLink(csv, headers) {
 
     var csvFile = new Blob([dCSV], {type: contentType});
 
-    document.getElementById('donlink').download = 'my.csv';
-    document.getElementById('donlink').href = window.URL.createObjectURL(csvFile);
-    document.getElementById('donlink').dataset.downloadurl = [contentType, document.getElementById('donlink').download, document.getElementById('donlink').href].join(':');
-    document.getElementById('donlinkcont').style.display = "inline";
+    //document.getElementById('donlink').download = 'my.csv';
+    $('#donlink').prop('download', 'my.csv');
+    $('#donlink').prop('href', window.URL.createObjectURL(csvFile));
+    //document.getElementById('donlink').href = window.URL.createObjectURL(csvFile);
+    $('#donlink').prop('dataset').downloadurl = [contentType, $('#donlink').prop('download'), $('#donlink').prop('href')].join(':');
+    $('#donlinkcont').show();
+    //document.getElementById('donlinkcont').style.display = "inline";
 }
 
 function markerToCSV(localMarkers) {
@@ -282,7 +294,7 @@ var map;
 var resCSV = null;
 $(document).ready(function () {
     if (isAPIAvailable()) {
-        $('#files').bind('change', handleFileSelect);
+        $('#file').bind('change', handleFileSelect);
     }
     google.maps.event.addDomListener(window, 'load', initMap);
 });
@@ -290,7 +302,6 @@ $(document).ready(function () {
 function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
     selectedFile = files[0];
-
 }
 
 
@@ -327,8 +338,8 @@ function initMap() {
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
 
-function sanitize_csv_row(row){
-    for (var i = 0; i < row.length; ++i){
+function sanitize_csv_row(row) {
+    for (var i = 0; i < row.length; ++i) {
         row[i] = row[i].toString().replace(/,/g, " ");
     }
     return row;

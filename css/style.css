@@ -1,8 +1,13 @@
 #map-canvas {
-    width: 80%; height: 900px; margin-top: 40px; margin-bottom: 40px; margin-left: 10%;margin-right: 10%;
+    width: 80%;
+    height: 900px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-#panel {
+.panel {
     /*position: absolute;*/
     /*top: 5px;*/
     /*left: 50%;*/
@@ -11,4 +16,54 @@
     background-color: #fff;
     padding: 5px;
     border: 1px solid #999;
+}
+
+#addrowbutton, #runzoningbutton {
+    margin: 5px;
+}
+/*#runzoningbutton {*/
+    /*float: right;*/
+/*}*/
+
+/*#addrowbutton {*/
+    /*float: left;*/
+/*}*/
+
+@media ( max-width: 543px) {
+    #addheaderbutton {
+        margin-top: auto;
+    }
+}
+
+#csvtable {
+    width: 100%;
+    overflow: auto;
+    display: block;
+    max-height: 350px;
+}
+
+#csvtable td, #csvtable th {
+    border-color: #818a91;
+    width: 200px;
+}
+
+hr.h_separator {
+    border: 0;
+    height: 2px;
+    background-image: -webkit-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -moz-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -ms-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+    background-image: -o-linear-gradient(left, #f0f0f0, #8c8b8b, #f0f0f0);
+}
+
+.vertical-center {
+    /*min-height: 100%;  !* Fallback for browsers do NOT support vh unit *!*/
+    /*min-height: 100vh; !* These two lines are counted as one :-)       *!*/
+
+    display: flex;
+    align-items: center;
+}
+
+#csvtable #address_column {
+    width: 150px;
 }
